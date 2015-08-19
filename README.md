@@ -356,6 +356,43 @@ Failed to add the host to the list of known hosts (/home/bandit16/.ssh/known_hos
 bandit17@melinda:~$ 
 ```
 
+######Level17->Level18:
+```
+bandit17@melinda:~$ ls
+passwords.new  passwords.old
+bandit17@melinda:~$ diff passwords.new passwords.old 
+42c42
+< kfBf3eYk5BPBRzwjqutbbfE887SVc5Yd
+---
+> BS8bqB1kqkinKJjuxL6k072Qq9NRwQpR
+```
+
+######Level18->Level19:
+```
+Byebye !
+Connection to bandit.labs.overthewire.org closed.
+
+[root@localhost Desktop]# ssh bandit18@bandit.labs.overthewire.org cat readme
+bandit18@bandit.labs.overthewire.org's password: 
+IueksS7Ubh8G3DCwVzrTd8rAVOwq3M5x
+```
+
+######Level19->Level20:
+```
+bandit19@melinda:~$ ls
+bandit20-do
+bandit19@melinda:~$ ./bandit20-do
+Run a command as another user.
+  Example: ./bandit20-do id
+bandit19@melinda:~$ ./bandit20-do id
+uid=11019(bandit19) gid=11019(bandit19) euid=11020(bandit20) groups=11020(bandit20),11019(bandit19)
+bandit19@melinda:~$ ./bandit20-do whoami
+bandit20
+bandit19@melinda:~$ ./bandit20-do cat /etc/bandit_pass/bandit20
+GbKksEFF4yrVs6il55v6gwY5aVje5f0j
+```
+
+######Level20->Level21:
 
 
 
