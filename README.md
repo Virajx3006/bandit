@@ -1,5 +1,5 @@
 # bandit
-bandit waregames
+#bandit waregames
 
 
 Level0 : 
