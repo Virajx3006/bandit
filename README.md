@@ -127,6 +127,8 @@ DXjZPULLxYr17uwoI01bNLQbtFemEgo7
 
 ######Level6->Level7:
 ```
+//It is given that the file can be anywhere within the server and it has following attributes: owned by user bandit7 - owned by group bandit6 - 33 bytes in size. 'find / -user bandit7 -group bandit6 -size 33c 2>/dev/null' command displays the location of the file.//
+
 bandit6@melinda:~$ find / -user bandit7 -group bandit6 -size 33c 2>/dev/null
 /var/lib/dpkg/info/bandit7.password
 bandit6@melinda:~$ cat /var/lib/dpkg/info/bandit7.password
@@ -135,6 +137,8 @@ HKBPTKQnIay4Fw76bEy8PVxKEDQRKTzs
 
 ######Level7->Level8:
 ```
+//It is given that password for the next level is stored in the file data.txt next to the word millionth. 'cat data.txt | grep millionth' command displays the content that is next to the 'millionth'.//
+
 bandit7@melinda:~$ ls
 data.txt
 bandit7@melinda:~$ cat data.txt | grep millionth
@@ -143,6 +147,8 @@ millionth	cvX2JJa4CFALtqS87jk27qwqGhBM9plV
 
 ######Level8->Level9:
 ```
+//It is given that password within data.txt file and password is the only unique line within this file. 'cat data.txt | sort | uniq -u' command displays this unique line.//
+
 bandit8@melinda:~$ ls
 data.txt
 bandit8@melinda:~$ cat data.txt | sort | uniq -u
@@ -151,6 +157,8 @@ UsvVyFSfZZWbi6wgC7dAFyFuR6jQQUhR
 
 ######Level9->Level10:
 ```
+//The password for the next level is stored in the file data.txt among of few lines of human-readable strings starting with ‘=’ characters. 'strings data.txt | grep '='' command displays lines that contains '='.//
+
 bandit9@melinda:~$ ls
 data.txt
 bandit9@melinda:~$ strings data.txt | grep '='
@@ -174,6 +182,8 @@ ie)=5e
 
 ######Level10->Level11:
 ```
+//File that contains the password is encoded with base64. It is required to decode the file to get the output.//
+
 bandit10@melinda:~$ ls
 data.txt
 bandit10@melinda:~$ base64 -d data.txt
@@ -182,6 +192,8 @@ The password is IFukwKGsFW8MOq3IRFqrxE1hxTNEbUPR
 
 ######Level11->Level12:
 ```
+//The password is encoded using simple rot13 encryption and should decoded by rot13 decoder.//
+
 bandit11@melinda:~$ ls
 data.txt
 bandit11@melinda:~$ cat data.txt | tr a-zA-Z n-za-mN-ZA-M
@@ -190,6 +202,8 @@ The password is 5Te8Y4drgCRfCx8ugdwuEX8KFC6k2EUu
 
 ######Level12->Level13:
 ```
+//The password is stored in file data.txt, which is a hexdump of a file that has been repeatedly compressed. First, a directory under /tmp is created and the file was decompressed and checked over and over again until the right file format (ASCII) was found.//
+
 bandit12@melinda:~$ ls
 data.txt
 bandit12@melinda:~$ file data.txt
@@ -244,6 +258,8 @@ The password is 8ZjyCRiBWFYkneahHwxCv3wb2a1ORpYL
 
 ######Level13->Level14:
 ```
+// The password for the next level is stored in /etc/bandit_pass/bandit14 and can only be read by user bandit14. It is required to get the private SSH key that can be used to log into the next level.//
+
 bandit13@melinda:~$ ls
 sshkey.private
 bandit13@melinda:~$ ssh -i sshkey.private bandit14@localhost
@@ -259,6 +275,8 @@ bandit14@melinda:~$ cat /etc/bandit_pass/bandit14
 
 ######Level14->Level15:
 ```
+//The password for the next level was retrieved by submitting the password of the current level to port 30000 on localhost. It was achieved by using telnet to connect to localhost on port 30000 and enter the password while in bandit14’s shell.//
+
 bandit14@melinda:~$ telnet localhost 30000
 Trying 127.0.0.1...
 Connected to localhost.
@@ -272,6 +290,8 @@ Connection closed by foreign host.
 
 ######Level15->Level16:
 ```
+//The password for the next level was retrieved by submitting the password of the current level to port 30001 on localhost using SSL encryption.//
+
 bandit15@melinda:~$ openssl s_client -connect localhost:30001 -quiet
 depth=0 CN = li190-250.members.linode.com
 verify error:num=18:self signed certificate
@@ -287,6 +307,9 @@ read:errno=0
 
 ######Level16->Level17:
 ```
+//The password for the next level was retrieved by submitting the password of the current level to a port on localhost in the range 31000 to 32000. First it is required to find out which of these ports have a server listening on them. Port 31000, 31046, 31691, and 31960 are out, since those are echo or SSH. 31518 and 31790 are possible solutions and it is found that the port is 31790.
+And the SSH key was received by using 'echo `cat /etc/bandit_pass/bandit16` | openssl s_client -connect localhost:31790 -quiet' command. Then the SSH key was coppied to the 'sshkey.private' file. Then it is possible to SSH to levlel17 with this 'sshkey.private' file.//
+
 bandit16@melinda:~$ nmap -p 31000-32000 localhost -sV
 
 Starting Nmap 6.40 ( http://nmap.org ) at 2015-08-19 10:38 UTC
