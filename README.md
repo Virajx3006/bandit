@@ -30,6 +30,7 @@ V1DtqXWVFXTvM2F0k09SHz0YwRINYA9
 ######Level2->Level3:
 ```
 //file name contains spaces. entering file name within double qoutes makes the file readable.//
+
 bandit2@melinda:~$ ls
 spaces in this filename
 bandit2@melinda:~$ cat "spaces in this filename"
