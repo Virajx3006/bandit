@@ -2,11 +2,13 @@
 
 ######Level0:
 ```
+//login to the level0 using p/w bandit0
 [root@localhost Desktop]# ssh bandit0@bandit.labs.overthewire.org
 ```
 
 ######Level0->Level1:
 ```
+//
 bandit0@melinda:~$ ls
 readme
 bandit0@melinda:~$ cat readme
