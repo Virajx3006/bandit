@@ -394,6 +394,8 @@ bandit17@melinda:~$
 
 ######Level17->Level18:
 ```
+//There are 2 files in the homedirectory: passwords.old and passwords.new. The password for the next level is in passwords.new and is the only line that has been changed between passwords.old and passwords.new.//
+
 bandit17@melinda:~$ ls
 passwords.new  passwords.old
 bandit17@melinda:~$ diff passwords.new passwords.old 
@@ -405,6 +407,8 @@ bandit17@melinda:~$ diff passwords.new passwords.old
 
 ######Level18->Level19:
 ```
+//It logouts automatically when tries to log in to level18 with 'ssh bandit18@bandit.labs.overthewire.org' command. Therefore in order to get the password of level19, 'ssh bandit18@bandit.labs.overthewire.org cat readme' was used.//
+
 Byebye !
 Connection to bandit.labs.overthewire.org closed.
 
@@ -415,6 +419,8 @@ IueksS7Ubh8G3DCwVzrTd8rAVOwq3M5x
 
 ######Level19->Level20:
 ```
+//It is required to use setuid binary in the home directory to log in to the next level. Executing without arguments dislpays the way to use it. After using setuid binary library, the password for the next level was found within (/etc/bandit_pass) directory.//
+
 bandit19@melinda:~$ ls
 bandit20-do
 bandit19@melinda:~$ ./bandit20-do
@@ -430,6 +436,11 @@ GbKksEFF4yrVs6il55v6gwY5aVje5f0j
 
 ######Level20->Level21:
 ```
+//Within homedirectory, a file named as 'suconnect' was available and when it was executed, a usage document was displayed. It mentioned that the 'program will connect to the given port on localhost using TCP. If it receives the
+correct password from the other side, the next password is transmitted back'.
+
+Therefore, within bandit20 shell, with use of two terminals, the application was executed with use of port 3222 (given). Then the password for the next level was retired from the second shell.//
+
 bandit20@melissa:~$ ls
 suconnect
 bandit20@melissa:~$ ./suconnect
