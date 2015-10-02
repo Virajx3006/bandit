@@ -2,13 +2,15 @@
 
 ######Level0:
 ```
-//login to the level0 using p/w bandit0
+//login to the level0 using p/w bandit0//
+
 [root@localhost Desktop]# ssh bandit0@bandit.labs.overthewire.org
 ```
 
 ######Level0->Level1:
 ```
-//
+//ls command displays available files within directory. 'cat readme' displays the content of 'readme' file on screen.//
+
 bandit0@melinda:~$ ls
 readme
 bandit0@melinda:~$ cat readme
@@ -17,6 +19,8 @@ boJ9jbbUNNfktd78OOpsqOltutMc3MY1
 
 ######Level1->Level2:
 ```
+//it is mentioned that file name is '-'. To read that file, it is required to delimit the '-' (dash).//
+
 bandit1@melinda:~$ ls
 -
 bandit1@melinda:~$ cat ./-
@@ -25,6 +29,7 @@ V1DtqXWVFXTvM2F0k09SHz0YwRINYA9
 
 ######Level2->Level3:
 ```
+//file name contains spaces. entering file name within double qoutes makes the file readable.//
 bandit2@melinda:~$ ls
 spaces in this filename
 bandit2@melinda:~$ cat "spaces in this filename"
@@ -33,6 +38,8 @@ UmHadQclWmgdLOKQ3YNgjWxGoRMb5luK
 
 ######Level3->Level4:
 ```
+//file is a hidden file within 'inhere' folder. available hidden files can be retrieved using 'ls -la' command. prefix of a hidden file contains a '.'. Therefore, hidden file is '.hidden'.//
+
 bandit3@melinda:~$ ls
 inhere
 bandit3@melinda:~$ cd inhere
@@ -47,6 +54,8 @@ pIwrPrtPN36QITSp3EQaw936yaFoFgAB
 
 ######Level4->Level5:
 ```
+//It is mentioned that pasword is within the directory 'inhere' and it contains several files and only one file is in human readable format (ASCII). Using code, '<filename> ./-*', it is possible to identify which file is in ASCII.//
+
 bandit4@melinda:~$ ls
 inhere
 bandit4@melinda:~$ cd inhere
@@ -81,6 +90,8 @@ koReBOKuIDDepwhWk7jZC0RTdopnAYKh
 
 ######Level5->Level6:
 ```
+//It is mentioned that the file is within 'inhere' directory and it is human readable, size:1033bytes and non executable. 'inhere' directory contains more directories. Therefore, command 'find ./ -size 1033c' goes through these directories and displays the files that 1033Bytes in size.//
+
 bandit5@melinda:~$ ls 
 inhere
 bandit5@melinda:~$ cd inhere
